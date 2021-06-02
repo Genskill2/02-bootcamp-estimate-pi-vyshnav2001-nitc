@@ -1,6 +1,28 @@
 import math
 import unittest
 
+def wallis(n):
+    prod = 1
+    for i in range(1,n+1):
+        a = (4*(i**2))/((4*(i**2)) - 1)
+        prod*=a
+    return(2*prod)
+    
+from random import *
+def monte_carlo(n):
+    nod_circle = 0      # number of dots inside cirle
+    nod_square = 0      # number of dots inside square
+    for i in range(n):
+        a = random()
+        b = random()
+        if (a**2 + b**2)<=1:
+            nod_circle+=1
+            nod_square+=1
+        else:
+            nod_square+=1
+    
+    return(4*nod_circle/nod_square)
+
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
         for i in range(0, 5):
@@ -30,3 +52,5 @@ class TestMC(unittest.TestCase):
     
 if __name__ == "__main__":
     unittest.main()
+
+ 
